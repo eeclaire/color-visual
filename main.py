@@ -18,14 +18,25 @@ def main():
 		color_palette.append(colors)
 		#print color_palette
 
+	color_hex = []
+	color_hex_list = []
 	color_names = []
 	color_probabilities = []
 	for image in color_palette:
 		for color in image:
+			color_hex.append(color['w3c']['hex'])
 			color_names.append(color['w3c']['name'])
 			color_probabilities.append(color['density'])
-	plot = sns.barplot(color_names, color_probabilities)
-	plt.show()
+
+	print color_hex
+	print color_names
+	print color_probabilities
+
+	with sns.color_palette(color_hex):
+
+		# Create the plot
+		plot = sns.barplot(color_names, color_probabilities)
+		plt.show()
 
 
 def get_image_colors(clarifai_api, img_id):
